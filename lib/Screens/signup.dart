@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class Signup extends StatefulWidget {
   @override
@@ -102,6 +103,35 @@ class _Signup extends State<Signup> {
                     keyboardType: TextInputType.emailAddress,
                   ),
               ),
+              const SizedBox(height: 16,),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 2,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child:
+              IntlPhoneField(
+                decoration: InputDecoration(
+                  labelText: 'Mobile no',
+                  prefixIcon: Icon(Icons.phone),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                initialCountryCode: 'US',
+                onChanged: (phone) {
+
+                }
+              ),
+              ),
                   const SizedBox(height: 16),
               Container(
                 decoration: BoxDecoration(
@@ -126,7 +156,7 @@ class _Signup extends State<Signup> {
                     ),
                   ),
               ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -161,7 +191,7 @@ class _Signup extends State<Signup> {
                     obscureText: !passwordVisible,
                   ),
               ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -199,7 +229,7 @@ class _Signup extends State<Signup> {
                     }).toList(),
                   ),
               ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -224,7 +254,7 @@ class _Signup extends State<Signup> {
                     keyboardType: TextInputType.text,
                   ),
               ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -240,7 +270,7 @@ class _Signup extends State<Signup> {
                 ),child:
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      labelText: 'Preference',
+                      labelText: 'Why EcoCred?',
                       prefixIcon: Icon(Icons.list),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -253,11 +283,9 @@ class _Signup extends State<Signup> {
                       });
                     },
                     items: <String>[
-                      'Clothing',
-                      'Electronics',
-                      'Home Appliances',
-                      'Furniture',
-                      'Beauty Products'
+                      'Environment Conservation',
+                      'Rewards',
+                      'Rewards and Enovironment Conservation both',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -267,38 +295,6 @@ class _Signup extends State<Signup> {
                   ),
               ),
                   const SizedBox(height: 16),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: <Widget>[
-                  //     GestureDetector(
-                  //       onTap: () {
-                  //         setState(() {
-                  //           rememberMe = !rememberMe;
-                  //         });
-                  //       },
-                  //       child: Row(
-                  //         children: [
-                  //           Checkbox(
-                  //             value: rememberMe,
-                  //             onChanged: (bool? value) {
-                  //               setState(() {
-                  //                 rememberMe = value!;
-                  //               });
-                  //             },
-                  //           ),
-                  //           Text('Remember'),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         // Handle "Forgot your password?"
-                  //       },
-                  //       child: Text('Forgot your password?'),
-                  //     ),
-                  //   ],
-                  // ),
-                  // SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -314,7 +310,7 @@ class _Signup extends State<Signup> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Signup',
                         style: TextStyle(fontSize: 16),
                       ),
@@ -338,7 +334,7 @@ class _Signup extends State<Signup> {
                         onPressed: () {
                           // Handle Google signup
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.g_mobiledata,
                           size: 45,
                           color: Colors.red,

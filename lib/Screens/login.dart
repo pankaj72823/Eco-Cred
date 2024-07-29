@@ -148,7 +148,7 @@ class _Login extends State<Login> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (formKey.currentState?.validate() ?? false) {
-                          // Handle signup
+
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -180,7 +180,7 @@ class _Login extends State<Login> {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            // Handle Google signup
+
                           },
                           icon: Icon(
                             Icons.g_mobiledata,
