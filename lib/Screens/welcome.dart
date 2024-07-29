@@ -1,4 +1,6 @@
-import 'package:ecocred/Screens/challenges_screen.dart';
+
+import 'package:ecocred/Screens/login.dart';
+import 'package:ecocred/Screens/signup.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget{
@@ -80,7 +82,10 @@ class Welcome extends StatelessWidget{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(onPressed: () {}, child:
+                    ElevatedButton(onPressed: () => Navigator.push(
+                      context, MaterialPageRoute(
+                        builder: (ctx) => Login(),
+                    ),), child:
                     Text('Log in',style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -102,8 +107,11 @@ class Welcome extends StatelessWidget{
                           ),
                       ),
                     ),
-                    ElevatedButton(onPressed: () => {},
-                      child: Text('Join now',
+                    ElevatedButton(onPressed: () =>Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (ctx)=> Signup(),
+                    ),
+                    ),child: Text('Join now',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
