@@ -1,7 +1,8 @@
 import express from 'express'
-import mongoose from 'mongoose';
 import './config/passport.js'
+import './config/mongodb.js'
 import { authRouter } from './Router/authRouter.js';
+import { initRouter } from './Router/initRouter.js';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }))
@@ -17,25 +18,11 @@ app.use((req, res, next) => {
   )}
   next();
 });
-
-//MongoDB Connection 
-async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/Eco-Cred");
-  }
-  main()
-    .then((res) => {
-      console.log("Connected to Database ");
-    })
-    .catch((err) => {
-      console.log(err);
-});
   
 
 app.use('/auth' ,authRouter)
 
-app.get('/',(req,res)=>{
-    res.send("Hello")
-})
+app.use('/init',initRouter)
 
 app.listen(5050, () => {
     console.log("Click to Connect : http://localhost:5050/");
