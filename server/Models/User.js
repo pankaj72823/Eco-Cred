@@ -40,7 +40,6 @@ const userSchema = new Schema({
     },
     preferences: {
         type: [String],
-        required: true
     },
     carbon_footprint: {
         transportation: {

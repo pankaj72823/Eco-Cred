@@ -12,7 +12,7 @@ export const signup =wrapAsync( async(req,res)=>{
     const newUser = new User(req.body)
     const regUser = await newUser.save();
     const token = jwt.sign({ sub: regUser._id }, jwtSecret, { expiresIn: '1d' });
-    res.status(201).json({ token,...regUser._doc }); 
+    res.status(200).json({ token,...regUser._doc }); 
   }
 )
 
@@ -26,7 +26,7 @@ export const login = wrapAsync(async(req,res)=>{
         if (err) return res.status(500).json({ message: 'Internal server error' });
         if (!isMatch) return res.status(401).json({ message: 'Invalid username or password' });
 
-        const token = jwt.sign({ sub: user._id }, jwtSecret, { expiresIn: '1h' });
-        res.json({ token, ...user._doc });
+        const token = jwt.sign({ sub: user._id }, jwtSecret, { expiresIn: '1d' });
+        res.status(200).json({ token, ...user._doc });
       });
 })

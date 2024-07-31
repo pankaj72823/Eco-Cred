@@ -2,7 +2,8 @@ import express from 'express'
 import './config/passport.js'
 import './config/mongodb.js'
 import { authRouter } from './Router/authRouter.js';
-import { initRouter } from './Router/initRouter.js';
+import { answersRouter } from './Router/answersRouter.js';
+
 
 const app = express();
 app.use(express.urlencoded({ extended: true }))
@@ -22,7 +23,8 @@ app.use((req, res, next) => {
 
 app.use('/auth' ,authRouter)
 
-app.use('/init',initRouter)
+
+app.use('/answers',answersRouter)
 
 app.listen(5050, () => {
     console.log("Click to Connect : http://localhost:5050/");

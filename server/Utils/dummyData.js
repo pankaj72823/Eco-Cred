@@ -1,4 +1,4 @@
-const dummydata = [
+const dummydata =
     {
         "name": "Alice Smith",
         "email": "alice.smith@example.com",
@@ -8,44 +8,122 @@ const dummydata = [
         "gender": "Female",
         "profession": "Graphic Designer",
         "why_EcoCred": "To make a positive impact on the environment",
-        "preferences": ["Clothing", "Electronics", "Books", "Furniture", "Fitness Equipment"]
+    }
+
+const questions = [
+    {
+        "category": "transportation",
+        "question": "How do you usually commute to work or school?",
+        "options": ["Car", "Bus", "Train", "Bicycle", "Walking", "Other"],
     },
     {
-        "name": "Bob Johnson",
-        "email": "bob.johnson@example.com",
-        "phone_number": 9234567890,
-        "username": "bobjohnson",
-        "password": "strongpassword789",
-        "gender": "Male",
-        "profession": "Data Analyst",
-        "why_EcoCred": "For a sustainable future",
-        "preferences": ["Clothing", "Electronics", "Home Appliances", "Garden Tools", "Sports Gear"],
-        "carbon_footprint": {
-            "transportation": 510.5,
-            "home_energy_use": 4600,
-            "diet": 4100,
-            "waste_management": 92.1,
-            "total": 9302.6,
-            "suggestions": [
-                "Consider using public transport, carpooling, or cycling instead of driving your car for daily commutes.",
-                "Explore options for reducing your electricity consumption at home, such as switching to energy-efficient appliances and using less energy during peak hours.",
-                "Reduce your meat consumption and opt for more plant-based meals.",
-                "Minimize food waste by planning meals, buying only what you need, and composting organic waste."
-            ]
-        },
-        "badges": 8
+        "category": "transportation",
+        "question": "How many kilometers do you drive per day?",
+        "options": [],
+        "answer": "200"
     },
     {
-        "name": "Carol Lee",
-        "email": "carol.lee@example.com",
-        "phone_number": 9345678901,
-        "username": "carollee",
-        "password": "mypassword123",
-        "gender": "Female",
-        "profession": "Marketing Specialist",
-        "why_EcoCred": "To reduce my carbon footprint",
-        "preferences": ["Clothing", "Electronics", "Home Appliances", "Beauty Products", "Kitchenware"]
+        "category": "transportation",
+        "question": "How often do you use public transport per week?",
+        "options": ["Bus", "Train", "Subway"],
+        "answer": "Bus"
+    },
+    {
+        "category": "transportation",
+        "question": "How many kilometers do you travel using public transport per day?",
+        "options": [],
+        "answer": "100"
+    },
+    {
+        "category": "transportation",
+        "question": "How many flights do you take per year?",
+        "options": [],
+        "answer": "10"
+    },
+    {
+        "category": "home_energy_use",
+        "question": "How many people live in your household?",
+        "options": [],
+        "answer": "40"
+    },
+    {
+        "category": "home_energy_use",
+        "question": "What is your average consumption of electricity in a month? (kilowatt-hour(kWh)/month)",
+        "options": [],
+        "answer": "1000"
+    },
+    {
+        "category": "home_energy_use",
+        "question": "What is your primary source of electricity?",
+        "options": ["Coal", "Natural Gas", "Solar", "Wind", "Hydro", "Other"],
+        "answer": "Natural Gas"
+    },
+    {
+        "category": "home_energy_use",
+        "question": "What is your primary source of Cooking?",
+        "options": ["Natural Gas", "Electricity", "Wood", "Other"],
+        "answer": "Electricity"
+    },
+    {
+        "category": "home_energy_use",
+        "question": "How often do you use air conditioning?",
+        "options": ["Never", "Occasionally", "Regularly", "Always"],
+        "answer": "Regularly"
+    },
+    {
+        "category": "diet",
+        "question": "How often do you consume meat?",
+        "options": ["Daily", "Several times a week", "Weekly", "Rarely", "Never"],
+        "answer": "Daily"
+    },
+    {
+        "category": "diet",
+        "question": "How often do you consume locally sourced food?",
+        "options": ["Daily", "Several times a week", "Weekly", "Rarely", "Never"],
+        "answer": "Weekly"
+    },
+    {
+        "category": "diet",
+        "question": "How often do you eat out at restaurants or order takeout?",
+        "options": ["Daily", "Several times a week", "Weekly", "Rarely", "Never"],
+        "answer": "Weekly"
+    },
+    {
+        "category": "diet",
+        "question": "Do you try to minimize food waste?",
+        "options": ["Always", "Usually", "Sometimes", "Rarely", "Never"],
+        "answer": "Usually"
+    },
+    {
+        "category": "waste_management",
+        "question": "Do you recycle regularly?",
+        "options": ["Always", "Usually", "Sometimes", "Rarely", "Never"],
+        "answer": "Always"
+    },
+    {
+        "category": "waste_management",
+        "question": "What percentage of your waste is recycled?",
+        "options": [],
+        "answer": "50%"
+    },
+    {
+        "category": "waste_management",
+        "question": "How many bags of trash does your household produce per week?",
+        "options": [],
+        "answer": "3"
+    },
+    {
+        "category": "waste_management",
+        "question": "Do you compost organic waste?",
+        "options": ["Always", "Usually", "Sometimes", "Rarely", "Never"],
+        "answer": "Sometimes"
+    },
+    {
+        "category": "miscellaneous",
+        "question": "Do you try to buy eco-friendly or sustainable products?",
+        "options": ["Always", "Usually", "Sometimes", "Rarely", "Never"],
+        "answer": "Usually"
     }
 ]
 
-export default dummydata
+export {dummydata,questions}
