@@ -1,10 +1,14 @@
+import dotenv from "dotenv";
 import express from 'express'
 import './config/passport.js'
 import './config/mongodb.js'
 import { authRouter } from './Router/authRouter.js';
 import { answersRouter } from './Router/answersRouter.js';
+import { questionRouter } from './Router/questionRouter.js';
 
-
+import { GoogleGenerativeAI } from "@google/generative-ai";
+dotenv.config();
+export const genAI = new GoogleGenerativeAI(process.env.API_KEY)
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -23,7 +27,7 @@ app.use((req, res, next) => {
 
 app.use('/auth' ,authRouter)
 
-
+app.use('/question' ,questionRouter)
 app.use('/answers',answersRouter)
 
 app.listen(5050, () => {

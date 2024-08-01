@@ -1,9 +1,10 @@
 import express from 'express'
-import { answers ,result } from '../Controllers/answersController.js'
+import { answers } from '../Controllers/answersController.js'
+import { result } from '../Controllers/resultController.js'
 const router = express.Router()
 
 router.post('/',answers)
 
-router.get('/',result)
+router.post('/result',result)
 
 export {router as answersRouter}

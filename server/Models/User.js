@@ -27,7 +27,6 @@ const userSchema = new Schema({
     },
     gender: {
         type: String,
-        enum: ['Male', 'Female', 'Other'],
         required: true
     },
     profession: {
@@ -65,12 +64,19 @@ const userSchema = new Schema({
         suggestions: {
             type: [String],
             default: null
+        },
+        last_tracked : {
+            type : String,
+            default : Date.now()
         }
     },
     badges: {
         type: Number,
         default: 0
-    }
+    },
+    challangeId: { type: Schema.Types.ObjectId, ref: 'Challange'},
+    fav_product_Id :{ type: Schema.Types.ObjectId, ref: 'Product'},
+    fav_project_Id :{ type: Schema.Types.ObjectId, ref: 'Project'},
 });
 
 userSchema.pre('save', function (next) {
