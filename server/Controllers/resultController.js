@@ -106,5 +106,5 @@ export const result = wrapAsync(async(req,res)=>{
       };
     console.log(updatedCarbonFootprint)
     const updatedUser = await User.updateOne({ _id: userId }, { $set: updatedCarbonFootprint });
-    res.send(result)
+    res.status(200).send(result)
 })

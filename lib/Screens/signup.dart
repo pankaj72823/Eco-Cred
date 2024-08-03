@@ -1,18 +1,88 @@
+
+import 'dart:convert';
+
+import 'package:ecocred/Screens/Slides/slides_transportation.dart';
+import 'package:ecocred/Screens/tabsScreen.dart';
+import 'package:ecocred/Provider/answers_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-class Signup extends StatefulWidget {
+class Signup extends ConsumerStatefulWidget {
   @override
-  State<Signup> createState() => _Signup();
+  ConsumerState<ConsumerStatefulWidget> createState() => _Signup();
+
 }
 
-class _Signup extends State<Signup> {
+class _Signup extends ConsumerState<Signup> {
+
   final formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phone_numberController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController professionController = TextEditingController();
+
+
   String? gender;
-  String? preference;
-  // bool rememberMe = false;
+  String? why_EcoCred;
   bool passwordVisible = false;
+
+  void dispose(){
+    super.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    phone_numberController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    professionController.dispose();
+  }
+
+  Future<void> _signup() async {
+    if(formKey.currentState?.validate() ??false ){
+      final name = nameController.text;
+      final email = emailController.text;
+      final phone_number = phone_numberController.text;
+      final username = usernameController.text;
+      final password = passwordController.text;
+      final profession = professionController.text;
+
+      final response = await http.post(
+        Uri.parse("http://192.168.43.188:5050/auth/signup"),
+        headers: {'Content-Type' : 'application/json'},
+        body: jsonEncode({
+          'name' : name,
+          'email' : email,
+          'phone_number' : phone_number,
+          'username' : username,
+          'password' : password,
+          'gender' : gender,
+          'profession' : profession,
+          'why_EcoCred' : why_EcoCred,
+        }),
+      );
+      print('pankaj');
+      print('Status code: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if(response.statusCode ==200){
+        final data = jsonDecode(response.body);
+        final token  = data['token'];
+        ref.read(questionnaireProvider.notifier).setToken(token);
+        print("Successful");
+        Navigator.push(
+            context, MaterialPageRoute(
+            builder: (ctx)=> Signup(),
+            ),
+        );
+      }
+      else{
+        print("There is error");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +91,7 @@ class _Signup extends State<Signup> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(20),
             child: Form(
               key: formKey,
               child: Column(
@@ -68,6 +138,7 @@ class _Signup extends State<Signup> {
                   ],
                 ),
                   child: TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       labelText: 'Name',
                       prefixIcon: Icon(Icons.drive_file_rename_outline),
@@ -75,6 +146,12 @@ class _Signup extends State<Signup> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Name';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.name,
                   ),
               ),
@@ -93,6 +170,7 @@ class _Signup extends State<Signup> {
                   ],
                 ),child:
                   TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Email',
                       prefixIcon: Icon(Icons.email),
@@ -100,6 +178,12 @@ class _Signup extends State<Signup> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Email';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.emailAddress,
                   ),
               ),
@@ -119,16 +203,22 @@ class _Signup extends State<Signup> {
                 ),
                 child:
               IntlPhoneField(
+                  controller: phone_numberController,
                 decoration: InputDecoration(
-                  labelText: 'Mobile no',
+                  labelText: 'Phone_number',
                   prefixIcon: Icon(Icons.phone),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                  validator: (value) {
+                    if(value == null || value.isValidNumber()){
+                      return 'Please enter your Phone Number';
+                    }
+                    return null;
+                  },
                 initialCountryCode: 'US',
                 onChanged: (phone) {
-
                 }
               ),
               ),
@@ -147,6 +237,7 @@ class _Signup extends State<Signup> {
                   ],
                 ),child:
                   TextFormField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       labelText: 'Username',
                       prefixIcon: Icon(Icons.person),
@@ -154,6 +245,12 @@ class _Signup extends State<Signup> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Username';
+                      }
+                      return null;
+                    },
                   ),
               ),
                   const SizedBox(height: 10),
@@ -171,8 +268,10 @@ class _Signup extends State<Signup> {
                   ],
                 ),child:
                   TextFormField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       labelText: 'Password',
+
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconButton(
                         icon: Icon(passwordVisible
@@ -188,6 +287,12 @@ class _Signup extends State<Signup> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Password';
+                      }
+                      return null;
+                    },
                     obscureText: !passwordVisible,
                   ),
               ),
@@ -227,6 +332,12 @@ class _Signup extends State<Signup> {
                         child: Text(value),
                       );
                     }).toList(),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Gender';
+                      }
+                      return null;
+                    },
                   ),
               ),
                   const SizedBox(height: 10),
@@ -244,6 +355,7 @@ class _Signup extends State<Signup> {
                   ],
                 ),child:
                   TextFormField(
+                    controller: professionController,
                     decoration: InputDecoration(
                       labelText: 'Profession',
                       prefixIcon: Icon(Icons.work),
@@ -251,6 +363,12 @@ class _Signup extends State<Signup> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Profession';
+                      }
+                      return null;
+                    },
                     keyboardType: TextInputType.text,
                   ),
               ),
@@ -269,40 +387,54 @@ class _Signup extends State<Signup> {
                   ],
                 ),child:
                   DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      labelText: 'Why EcoCred?',
-                      prefixIcon: Icon(Icons.list),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      decoration: InputDecoration(
+                        labelText: 'Why EcoCred?',
+                        // prefixIcon: Icon(Icons.list),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                    ),
-                    value: preference,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        preference = newValue;
-                      });
+                      value: why_EcoCred,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          why_EcoCred = newValue;
+                        });
+                      },
+                      items: <String>[
+                        'Environment Conservation',
+                        'Rewards',
+                        'Rewards and Enovironment Conservation both',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your reason of using Eco Cred';
+                      }
+                      return null;
                     },
-                    items: <String>[
-                      'Environment Conservation',
-                      'Rewards',
-                      'Rewards and Enovironment Conservation both',
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
+                    ),
               ),
                   const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          // Handle signup
-                        }
+                      onPressed: () async {
+                        await _signup();
+                        Navigator.push(
+                            context, MaterialPageRoute(
+                            builder: (ctx)=> SlidesTransportation(),
+                        ),
+                        );
                       },
+                      // onPressed: () {
+                      //   if (formKey.currentState?.validate() ?? false) {
+                      //     // Handle signup
+                      //   }
+                      // },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.tealAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -332,7 +464,6 @@ class _Signup extends State<Signup> {
                          ),
                           child: IconButton(
                         onPressed: () {
-                          // Handle Google signup
                         },
                         icon: const Icon(
                           Icons.g_mobiledata,

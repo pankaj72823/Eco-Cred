@@ -8,7 +8,7 @@ import { questionRouter } from './Router/questionRouter.js';
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 dotenv.config();
-export const genAI = new GoogleGenerativeAI(process.env.API_KEY)
+export const genAI = new GoogleGenerativeAI("AIzaSyC_-cPbqy6Y-HCvb5myQWhcUbSP2BnXmAI")
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())

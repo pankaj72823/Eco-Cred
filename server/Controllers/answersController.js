@@ -6,12 +6,14 @@ const jwtSecret = "EcoCred#Carbon@X"
 
 export const answers =wrapAsync (async(req,res)=>{
     const {token , data} = req.body
+    console.log(req.body)
     let userId;
     jwt.verify(token, jwtSecret, (err, decoded) => {
         if (err) {
             return res.status(401).send('Invalid token');
         }
         else{
+            console.log(decoded)
             userId = decoded.sub
         }
     })
@@ -29,7 +31,7 @@ export const answers =wrapAsync (async(req,res)=>{
     const url = 'http://localhost:5050/answers/result';
     try {
         const response = await axios.post(url, {token});
-        res.send(response.data)
+        res.status(200).send(response.data)
     } catch (error) {
         console.error('Error calling the route:', error);
         res.send("error")

@@ -1,6 +1,9 @@
 
+import 'package:ecocred/Screens/Slides/slides_diet.dart';
 import 'package:ecocred/Screens/login.dart';
 import 'package:ecocred/Screens/signup.dart';
+import 'package:ecocred/Screens/Slides/slides_transportation.dart';
+import 'package:ecocred/Screens/tabsScreen.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget{

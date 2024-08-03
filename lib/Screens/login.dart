@@ -1,15 +1,70 @@
+import 'dart:convert';
+import 'package:ecocred/Provider/answers_provider.dart';
+import 'package:ecocred/Provider/result_provider.dart';
+import 'package:ecocred/Screens/Slides/slides_transportation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Login extends StatefulWidget {
+
+final tokenProvider = StateProvider<String?>((ref)=>null);
+class Login extends ConsumerStatefulWidget {
   @override
-  State<Login> createState() => _Login();
+  ConsumerState<Login> createState() => _Login();
+
 }
 
-class _Login extends State<Login> {
+class _Login extends ConsumerState<Login> {
   final formKey = GlobalKey<FormState>();
-  bool rememberMe = false;
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool passwordVisible = false;
+
+  void dispose(){
+    super.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+  }
+
+  Future<void> _login() async {
+    if(formKey.currentState?.validate() ??false ) {
+      final username = usernameController.text;
+      final password = passwordController.text;
+
+      final response = await http.post(
+        Uri.parse("http://192.168.43.188:5050/auth/login"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'username': username,
+          'password': password,
+        }),
+      );
+      print('error loaded');
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          final token = data['token'];
+          ref.read(questionnaireProvider.notifier).setToken(token);
+          ref.read(resulttokenProvider.notifier).set(token);
+          print(token);
+          print('Login Succesful');
+          Navigator.push(
+            context, MaterialPageRoute(
+            builder: (ctx) => Login(),
+          ),
+          );
+
+
+          print('update');
+        }
+        else {
+          // Handle error response
+          print('Login failed: ${response.statusCode}');
+        }
+      }
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +120,23 @@ class _Login extends State<Login> {
                       ],
                     ),child:
                   TextFormField(
+                    controller: usernameController,
                     decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email),
+                      labelText: 'Username',
+                      prefixIcon: Icon(Icons.verified_user),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your Username';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
                   ),
+
                   ),
                   const SizedBox(height: 16),
                   Container(
@@ -90,6 +153,7 @@ class _Login extends State<Login> {
                       ],
                     ),child:
                   TextFormField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       prefixIcon: Icon(Icons.lock),
@@ -107,50 +171,64 @@ class _Login extends State<Login> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty){
+                        return 'Please enter your reason of using Eco Cred';
+                      }
+                      return null;
+                    },
                     obscureText: !passwordVisible,
                   ),
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            rememberMe = !rememberMe;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: rememberMe,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  rememberMe = value!;
-                                });
-                              },
-                            ),
-                            Text('Remember'),
-                          ],
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Handle "Forgot your password?"
-                        },
-                        child: Text('Forgot your password?'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: <Widget>[
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           rememberMe = !rememberMe;
+                  //         });
+                  //       },
+                  //       child: Row(
+                  //         children: [
+                  //           Checkbox(
+                  //             value: rememberMe,
+                  //             onChanged: (bool? value) {
+                  //               setState(() {
+                  //                 rememberMe = value!;
+                  //               });
+                  //             },
+                  //           ),
+                  //           Text('Remember'),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         // Handle "Forgot your password?"
+                  //       },
+                  //       child: Text('Forgot your password?'),
+                  //     ),
+                  //   ],
+                  // ),
+                  const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-
-                        }
+                      onPressed: ()  async {
+                       await _login();
+                         Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (ctx)=> SlidesTransportation(),
+                        ),
+                        );
                       },
+
+                        // if (formKey.currentState?.validate() ?? false) {
+                        //
+                        // }
+
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.tealAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
