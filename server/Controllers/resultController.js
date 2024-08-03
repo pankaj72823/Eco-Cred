@@ -47,8 +47,6 @@ async function run(data){
                 const result = await chat.sendMessage(message);
                 const response = await result.response
                 const text = response.text();
-                console.log(text)
-                console.log(extractAllCurlyBracesSubstrings(text))
                 return extractAllCurlyBracesSubstrings(text);
             }
 
@@ -78,7 +76,6 @@ export const result = wrapAsync(async(req,res)=>{
             return res.status(401).send('Invalid token');
         }
         else{
-            console.log(decoded)
             userId = decoded.sub
         }
     })
@@ -91,7 +88,6 @@ export const result = wrapAsync(async(req,res)=>{
             answer : answer.answer
         })
     }
-    console.log(detailAnswere)
     const result =await run(detailAnswere)
     let currentTimestamp = Date.now();
     let currentDate = new Date(currentTimestamp);
@@ -104,7 +100,6 @@ export const result = wrapAsync(async(req,res)=>{
         'carbon_footprint.suggestions': result.suggestions,
         'carbon_footprint.last_tracked': currentDate.toLocaleString()
       };
-    console.log(updatedCarbonFootprint)
     const updatedUser = await User.updateOne({ _id: userId }, { $set: updatedCarbonFootprint });
-    res.send(result)
+    res.status(200).send(result)
 })

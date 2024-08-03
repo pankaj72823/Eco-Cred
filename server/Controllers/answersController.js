@@ -29,7 +29,7 @@ export const answers =wrapAsync (async(req,res)=>{
     const url = 'http://localhost:5050/answers/result';
     try {
         const response = await axios.post(url, {token});
-        res.send(response.data)
+        res.status(200).send(response.data)
     } catch (error) {
         console.error('Error calling the route:', error);
         res.send("error")

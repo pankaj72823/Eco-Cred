@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.get('/',wrapAsync(async(req,res)=>{
     const questions = await Question.find();
-    console.log(questions);
     const response = [];
     for (const question of questions) {
         response.push({
