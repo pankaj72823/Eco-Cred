@@ -8,6 +8,7 @@ const jwtSecret = "EcoCred#Carbon@X"
 
 export const activateController=wrapAsync(async(req,res)=>{
     let userId;
+    const activate_challenge = req.body._id
    const decoded = jwt.verify(req.body.token, jwtSecret,(err, decoded) => {
     if (err) {
         return res.status(401).send('Invalid token');
@@ -16,18 +17,10 @@ export const activateController=wrapAsync(async(req,res)=>{
         userId = decoded.sub
     }
 })
-   const completionOn = moment().add(req.body.time_to_complete, 'minutes').toDate();
-   const newChallenge = new Challenge({
-       userId: new mongoose.Types.ObjectId(userId),
-       category: req.body.category,
-       challenge: req.body.challenge,
-       reason: req.body.reason,
-       time_to_complete: req.body.time_to_complete,
-       difficult: req.body.difficult,
-       status: 'ongoing',
-       completion_on: completionOn
-   });
-    await newChallenge.save();
+    const all_challange = await Challenge.updateMany({userId : userId,status : "available"},{ status: "blocked" }  )
+    const challange_to_activate = await Challenge.findById(req.body._id)
+    const completionOn = moment().add(challange_to_activate.time_to_complete, 'minutes').toDate();
+    const challange_is_activate = await Challenge.findByIdAndUpdate(req.body._id, { status : "ongoing", completion_on : completionOn })
     const response = {
         "activated" : true
     }

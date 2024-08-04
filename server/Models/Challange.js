@@ -14,15 +14,11 @@ const challengeSchema = new Schema({
         type: String,
         required: true
     },
-    reason: {
-        type: String,
-        required: true
-    },
     time_to_complete: {
         type: Number,
         required: true
     },
-    difficult: {
+    difficulty: {
         type: String,
         required: true,
         enum: ['easy', 'medium', 'hard']
@@ -30,8 +26,8 @@ const challengeSchema = new Schema({
     status: {
         type: String,
         required: true,
-        enum: ['ongoing', 'completed'],
-        default: 'ongoing'
+        enum: ['ongoing', 'completed','available','blocked'],
+        default: 'available'
     },
     completion_on: {
         type: Date

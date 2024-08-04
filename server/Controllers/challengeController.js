@@ -2,7 +2,10 @@ import wrapAsync from "../Utils/wrapAsync.js";
 import { Answer } from "../Models/Quetions.js";
 import jwt from "jsonwebtoken";
 import { genAI } from "../app.js";
+import Challenge from "../Models/Challange.js";
+import mongoose from "mongoose";
 const jwtSecret = "EcoCred#Carbon@X"
+
 
 function extractAllCurlyBracesSubstrings(inputString) {
     const startIndex = inputString.indexOf('{');
@@ -18,27 +21,62 @@ function extractAllCurlyBracesSubstrings(inputString) {
 }
 
 const format = {
-    "easy": {
-        "category": "string",
-        "challenge": "string",
-        "reason": "string",
-        "time_to_complete": "in Numbers only unit is minutes", //unit is in minutes currently we will update it to days at the last stage
-        "difficult": "easy"
-    },
-    "medium": {
-        "category": "string",
-        "challenge": "string",
-        "reason": "string",
-        "time_to_complete": "in Numbers only unit is minutes",
-        "difficult": "medium"
-    },
-    "hard": {
-        "category":"string",
-        "challenge": "string",
-        "reason": "string",
-        "time_to_complete": "in Numbers only unit is minutes",
-        "difficult": "hard"
-    }
+    "challenges": [
+        {
+            "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "easy"
+        },
+        {
+            "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "easy"
+        },
+        {
+            "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "easy"
+        },
+        {
+           "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "medium"
+        },
+        {
+           "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "medium"
+        },
+        {
+           "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "medium"
+        },
+        {
+           "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "hard"
+        },
+        {
+            "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "hard"
+        },
+        {
+            "category": "string",
+            "challenge": "string",
+            "time_to_complete": "in Numbers only unit is Minutes",
+            "difficulty": "hard"
+        }
+    ]
 }
 
 async function run(data){
@@ -53,7 +91,7 @@ async function run(data){
         }   
     })
     async function askAndRespond(){
-                const message = `Generate personalized challenges to help the user improve their carbon credits. The challenges should be categorized as easy, medium, and hard, with varying rewards in the form of badges. Each challenge should include the category, challenge, reason, time to complete, and rewards. Use the provided user data to tailor exactly 3 challenges as individual objects (not in an array), ensuring the categories are shuffled (not sequential). data = ${JSON.stringify(data)}, format = ${JSON.stringify(format)}`
+                const message = `Generate personalized challenges to help the user improve their carbon credits. Each difficulty level (easy, medium, hard) should have exactly 3 challenges. Ensure that the categories are shuffled and not sequential. Each challenge should include the category, challenge, time to complete, and rewards. Use the provided user data to tailor the challenges. The output should be include 3 challanges for easy,medium and hard. Total of 9 challanges. Data = ${JSON.stringify(data)}, format = ${JSON.stringify(format)}.`
                 const result = await chat.sendMessage(message);
                 const response = await result.response
                 const text = response.text();
@@ -74,6 +112,11 @@ export const challenge = wrapAsync(async(req,res)=>{
             userId = decoded.sub
         }
     })
+    const result = await Challenge.find({userId : userId, status : "available"})
+    console.log(result)
+    if(result.length > 0){
+    res.status(200).send(result)
+} else {
     const answers = await Answer.find({ userId }).populate('questionId').exec();
     let detailAnswere=[]
     for (const answer of answers) {
@@ -83,6 +126,19 @@ export const challenge = wrapAsync(async(req,res)=>{
             answer : answer.answer
         })
     }
-    const result =await run(detailAnswere)
-    res.status(200).send(result)
+    const array =await run(detailAnswere)
+    array.challenges.forEach(async(challenge) => {
+       const newChallenge = new Challenge({
+       userId: new mongoose.Types.ObjectId(userId),
+       category: challenge.category,
+       challenge: challenge.challenge,
+       reason: challenge.reason,
+       time_to_complete: challenge.time_to_complete,
+       difficulty: challenge.difficulty,
+     });
+    await newChallenge.save();
+    });
+    const newResult = await Challenge.find({userId : userId, status : "available"})
+    res.status(200).send(newResult)
+}
 })
