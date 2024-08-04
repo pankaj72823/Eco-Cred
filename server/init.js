@@ -1,5 +1,6 @@
 import { Question } from './Models/Quetions.js';
-import {dummydata,questions} from './Utils/dummyData.js';
+import Reward from './Models/Rewards.js';
+import {dummydata,questions,rewards} from './Utils/dummyData.js';
 import './config/mongodb.js'
 import axios from 'axios';
 
@@ -11,7 +12,8 @@ const startup =async()=>{
     } catch (error) {
         console.error('Error calling the route:', error);
     }
-    const stored =await Question.insertMany(questions)
+    // const stored =await Question.insertMany(questions)
+    const stored_reward = await Reward.insertMany(rewards)
     console.log("intialization Completed")
 }
 

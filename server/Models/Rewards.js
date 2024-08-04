@@ -18,7 +18,12 @@ const rewardSchema = new Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    required : true
+  },
+  file: {
+    type: String,
+    required : true
   }
 });
 

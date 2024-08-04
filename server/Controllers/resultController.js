@@ -14,20 +14,16 @@ const r1 = readline.createInterface({
 })
 
 
-function extractAllCurlyBracesSubstrings(inputString) {
-    const singleLineString = inputString.replace(/[\r\n]+/g, ' ').trim();
-    const regex = /\{.*?\}/;
-    const match = singleLineString.match(regex);
-    if (match) {
-        const jsonString = match[0];
-        try {
-        const jsonObject = JSON.parse(jsonString);
-        return jsonObject
-        } catch (error) {
-           return JSON.parse('{"message" :"error" }')
-        }
-    } else {
-        return JSON.parse('{"message" :"error" }')   
+function extractAllCurlyBracesSubstrings(inputString) { 
+    const startIndex = inputString.indexOf('{');
+    const endIndex = inputString.lastIndexOf('}') + 1;
+    const jsonString = inputString.substring(startIndex, endIndex);
+    
+    try {
+        const jsonData = JSON.parse(jsonString);
+        return jsonData
+    } catch (error) {
+        return JSON.parse('{"message" :"error" }');
     }
 }
 

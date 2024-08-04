@@ -126,4 +126,71 @@ const questions = [
     }
 ]
 
-export {dummydata,questions}
+const rewards =[
+    {
+      "difficulty": "easy",
+      "level": 1,
+      "reward": "🏅 Green Commute Champion Badge",
+      "description": "Earn the prestigious Green Commute Champion Badge! Flaunt your dedication to a greener world.",
+      "file": "green_commute_badge.jpeg"
+    },
+    {
+      "difficulty": "easy",
+      "level": 2,
+      "reward": "💸 5% Discount on Eco-Friendly Products",
+      "description": "Enjoy a 5% discount on eco-friendly products. Save money while saving the planet!",
+      "file": "5_percent_discount_coupon.jpeg"
+    },
+    {
+      "difficulty": "easy",
+      "level": 3,
+      "reward": "🛍️ Premium Set of Reusable Eco-Friendly Bags",
+      "description": "Receive a stylish premium set of reusable eco-friendly bags. Carry your groceries sustainably and in style.",
+      "file": "order_summary.jpeg"
+    },
+    {
+      "difficulty": "medium",
+      "level": 1,
+      "reward": "🌍 Planet Friendly Warrior Badge",
+      "description": "Become a Planet Friendly Warrior! Wear this badge with pride and inspire others.",
+      "file": "planet_friendly_warrior_badge.jpeg"
+    },
+    {
+      "difficulty": "medium",
+      "level": 2,
+      "reward": "📜 Eco-Cred Excellence Certificate",
+      "description": "Earn the exclusive Eco-Cred Excellence Certificate. Celebrate your outstanding contributions to sustainability.",
+      "file": "eco_cred_certificate.pdf"
+    },
+    {
+      "difficulty": "medium",
+      "level": 3,
+      "reward": "💚 Honorary Donation to Environmental NGO",
+      "description": "Make a lasting impact! We will donate to an environmental NGO in your honor.",
+      "file": "donation_cerificate.jpeg"
+    },
+    {
+      "difficulty": "hard",
+      "level": 1,
+      "reward": "💰 25% Discount on All Eco Products",
+      "description": "Get a 25% discount on all eco-friendly products! Shop more, save more, and lead a greener lifestyle.",
+      "file": "25_percent_discount_coupon.jpeg"
+    },
+    {
+      "difficulty": "hard",
+      "level": 2,
+      "reward": "🌱 Tree Plantation in Your Honor",
+      "description": "Contribute to a greener world! We will plant a tree in your honor and provide a certificate.",
+      "file": "tree_plantation_certificate.pdf"
+    },
+    {
+      "difficulty": "hard",
+      "level": 3,
+      "reward": "🏆 Leader Board Recognition",
+      "description": "Achieve Leader Board Recognition! Be celebrated as a top contributor to environmental sustainability.",
+      "file": "leader_board_name_recognition.jpeg"
+    }
+  ]
+  
+  
+export {dummydata,questions,rewards}
