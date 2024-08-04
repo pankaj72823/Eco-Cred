@@ -112,7 +112,7 @@ export const challenge = wrapAsync(async(req,res)=>{
             userId = decoded.sub
         }
     })
-    const result = await Challenge.find({userId : userId, status : "available"})
+    const result = await Challenge.find({userId : userId})
     if(result.length > 0){
     res.status(200).send(result)
 } else {
