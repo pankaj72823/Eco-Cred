@@ -70,10 +70,6 @@ const userSchema = new Schema({
             default : Date.now()
         }
     },
-    badges: {
-        type: Number,
-        default: 0
-    },
     levels: {
         easy: {
           type: Number,
