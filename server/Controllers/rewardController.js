@@ -34,5 +34,5 @@ export const reward = wrapAsync(async(req,res)=>{
          "hard" : data.rewards_upcoming.hard,
         }
       }
-    res.send(response)
+    res.status(200).send(response)
 })
