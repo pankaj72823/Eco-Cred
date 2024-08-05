@@ -8,7 +8,9 @@ import { answersRouter } from './Router/answersRouter.js';
 import { questionRouter } from './Router/questionRouter.js';
 import {activateRouter} from './Router/activateRouter.js'
 import {challengeRouter} from './Router/challengeRouter.js'
+import {rewardRouter} from './Router/rewardRouter.js'
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { rewards } from "./Utils/dummyData.js";
 dotenv.config();
 export const genAI = new GoogleGenerativeAI("AIzaSyC_-cPbqy6Y-HCvb5myQWhcUbSP2BnXmAI")
 const app = express();
@@ -33,6 +35,7 @@ app.use('/question' ,questionRouter)
 app.use('/answers',answersRouter)
 app.use('/challenges', challengeRouter)
 app.use('/activate', activateRouter)
+app.use('/reward', rewardRouter)
 
 app.listen(5050, () => {
     console.log("Click to Connect : http://localhost:5050/");
