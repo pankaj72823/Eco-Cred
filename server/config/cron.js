@@ -10,7 +10,7 @@ const updateChallengeStatuses = wrapAsync(async()=>{
         status: 'ongoing',
         completion_on: { $lte: now }
       });
-    
+            
       for (const challenge of challenges) {
         await Challenge.updateMany({userId : challenge.userId, status : "blocked"},{status:"available"})
         await Challenge.updateOne(
@@ -37,6 +37,9 @@ const updateChallengeStatuses = wrapAsync(async()=>{
           if (upcomingReward) {
             user.rewards_upcoming[challenge.difficulty]=upcomingReward._id;
           }
+        }
+        if(nextLevel > 3){
+            user.rewards_upcoming[challenge.difficulty]=null;
         }
         await user.save();
     }

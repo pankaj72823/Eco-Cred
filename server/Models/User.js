@@ -70,10 +70,6 @@ const userSchema = new Schema({
             default : Date.now()
         }
     },
-    badges: {
-        type: Number,
-        default: 0
-    },
     levels: {
         easy: {
           type: Number,
@@ -115,17 +111,20 @@ const userSchema = new Schema({
         easy: 
           {
             type: Schema.Types.ObjectId,
-            ref: 'Reward'
+            ref: 'Reward',
+            default : null
           },
         medium:
           {
             type: Schema.Types.ObjectId,
-            ref: 'Reward'
+            ref: 'Reward',
+            default : null
           },
         hard: 
           {
             type: Schema.Types.ObjectId,
-            ref: 'Reward'
+            ref: 'Reward',
+            default : null
           }
       },
     fav_product_Id :{ type: Schema.Types.ObjectId, ref: 'Product'},

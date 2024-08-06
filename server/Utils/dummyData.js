@@ -192,5 +192,123 @@ const rewards =[
     }
   ]
   
+const projects = [
+    {
+      "name": "Terrapass",
+      "description": "Terrapass offers projects for reducing carbon footprints via renewable energy and methane capture.",
+      "organization": "Terrapass",
+      "project_type": ["Reforestation", "Methane Capture"],
+      "impact": "Each 1,000 lbs of carbon offsets destroys 1,000 lbs of greenhouse gases."
+    },
+    {
+      "name": "Atmosfair",
+      "description": "Atmosfair specializes in offsetting carbon emissions from air travel with impactful projects.",
+      "organization": "Atmosfair",
+      "project_type": ["BioGas", "Solar Energy", "Hydro Power"],
+      "impact": "Funds go to various projects offsetting emissions from air travel."
+    },
+    {
+      "name": "Myclimate",
+      "description": "Myclimate aligns projects with UN SDGs, covering areas like hydropower and water purification.",
+      "organization": "Myclimate",
+      "project_type": ["Hydropower", "Energy Efficiency", "Land Improvement", "Water Purification"],
+      "impact": "Projects in Ethiopia, India, Togo, Benin, Solomon Islands, etc."
+    },
+    {
+      "name": "Carbon Checkout",
+      "description": "Carbon Checkout integrates carbon offsetting into online shopping with a unique widget for project selection.",
+      "organization": "Carbon Checkout",
+      "project_type": ["Blended Impact", "Protect Nature", "Safeguard our Oceans", "Preserve Biodiversity", "Transition to Renewable Energy"],
+      "impact": "Focuses on investing in nature-based solutions and renewable energy."
+    }
+  ]
   
-export {dummydata,questions,rewards}
+
+const product = [
+    {
+      "category": "Basic Needs / General Store Items",
+      "brand": "Puma",
+      "product": "Puma's Recycled Sneakers",
+      "description": "Sneakers made from recycled materials and sustainable practices.",
+      "carbon_reduce": 100
+    },
+    {
+      "category": "Basic Needs / General Store Items",
+      "brand": "Nirma",
+      "product": "Nirma Green Detergent",
+      "description": "A more eco-friendly detergent with reduced environmental impact.",
+      "carbon_reduce": 100
+    },
+    {
+      "category": "Basic Needs / General Store Items",
+      "brand": "Seventh Generation",
+      "product": "Seventh Generation Recycled Toilet Paper",
+      "description": "Toilet paper made from 100% recycled paper.",
+      "carbon_reduce": 50
+    },
+    {
+      "category": "Basic Needs / General Store Items",
+      "brand": "EcoVessel",
+      "product": "EcoVessel Insulated Water Bottle",
+      "description": "Reusable water bottles made from stainless steel and designed to reduce single-use plastic waste.",
+      "carbon_reduce": 30
+    },
+    {
+      "category": "Cosmetics",
+      "brand": "Kiehl’s",
+      "product": "Kiehl’s Ultra Facial Cream (with eco-friendly packaging)",
+      "description": "Skincare products using eco-friendly packaging and sustainable ingredients.",
+      "carbon_reduce": 20
+    },
+    {
+      "category": "Cosmetics",
+      "brand": "Neutrogena",
+      "product": "Neutrogena Hydro Boost Water Gel (with sustainable packaging)",
+      "description": "Skincare products that use sustainable practices and packaging.",
+      "carbon_reduce": 20
+    },
+    {
+      "category": "Cosmetics",
+      "brand": "Burt’s Bees",
+      "product": "Burt’s Bees Lip Balm",
+      "description": "Lip balm made from natural ingredients and eco-friendly packaging.",
+      "carbon_reduce": 20
+    },
+    {
+      "category": "Cosmetics",
+      "brand": "Lush",
+      "product": "Lush Shampoo Bars",
+      "description": "Solid shampoo bars made from natural ingredients with minimal packaging.",
+      "carbon_reduce": 20
+    },
+    {
+      "category": "General Usage Item",
+      "brand": "Unilever",
+      "product": "Sustainable Home Care Products",
+      "description": "Cleaning products made from eco-friendly ingredients and packaging.",
+      "carbon_reduce": 30
+    },
+    {
+      "category": "General Usage Item",
+      "brand": "Ecover",
+      "product": "Ecover Dish Soap",
+      "description": "Biodegradable dish soap made from plant-based ingredients.",
+      "carbon_reduce": 20
+    },
+    {
+      "category": "General Usage Item",
+      "brand": "Method",
+      "product": "Method All-Purpose Cleaner",
+      "description": "Eco-friendly all-purpose cleaner made from non-toxic, biodegradable ingredients.",
+      "carbon_reduce": 30
+    },
+    {
+      "category": "General Usage Item",
+      "brand": "Ecos",
+      "product": "Plant-based Laundry Detergent",
+      "description": "Plant-based laundry detergent with a focus on sustainability.",
+      "carbon_reduce": 40
+    }
+  ]
+  
+export {dummydata,questions,rewards,projects,product}
