@@ -1,14 +1,15 @@
+import 'package:ecocred/Provider/token_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AnswersProvider extends StateNotifier<List<Map<String, String>>> {
   AnswersProvider() : super([]);
-
   String? _token;
   void setToken(String token){
     _token = token;
   }
+
 
   void addAnswer(String question, String answer) {
     state = [
@@ -19,6 +20,7 @@ class AnswersProvider extends StateNotifier<List<Map<String, String>>> {
   }
   Future<void> submitAnswers() async {
 
+    // final token = ref.watch(userTokenProvider);
     final response = await http.post(
       Uri.parse('http://192.168.43.188:5050/answers'),
       headers: <String, String>{

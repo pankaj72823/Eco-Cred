@@ -1,22 +1,22 @@
-  import 'package:flutter_riverpod/flutter_riverpod.dart';
+  import 'package:ecocred/Provider/token_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
   import 'package:http/http.dart' as http;
   import 'dart:convert';
 
-  class ResultsProvider extends StateNotifier< String> {
-    ResultsProvider() : super('');
-
-    void set(String token) {
-      state = token;
-    }
-  }
-  final resulttokenProvider =
-  StateNotifierProvider<ResultsProvider, String>(
-        (ref) => ResultsProvider(),
-  );
+  // class ResultsProvider extends StateNotifier< String> {
+  //   ResultsProvider() : super('');
+  //
+  //   void set(String token) {
+  //     state = token;
+  //   }
+  // }
+  // final resulttokenProvider = StateNotifierProvider<ResultsProvider, String>(
+  //       (ref) => ResultsProvider(),
+  // );
 
   final carbonFootprintProvider = FutureProvider<CarbonFootprintResult>((ref) async {
-
-    final token = ref.watch(resulttokenProvider);
+    final token = ref.watch(userTokenProvider);
+    // final token = ref.watch(resulttokenProvider);
 
     if(token== null){
       throw Exception('Token is not available');
@@ -65,7 +65,6 @@
       required this.total,
       required this.suggestions,
     });
-
     factory CarbonFootprintResult.fromJson(Map<String, dynamic> json) {
       return CarbonFootprintResult(
         transportation: double.parse(json['transportation']),

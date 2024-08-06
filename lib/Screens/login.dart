@@ -1,6 +1,7 @@
 import 'dart:convert';
+import 'package:ecocred/Provider/activation_provider.dart';
 import 'package:ecocred/Provider/answers_provider.dart';
-import 'package:ecocred/Provider/result_provider.dart';
+import 'package:ecocred/Provider/token_provider.dart';
 import 'package:ecocred/Screens/Slides/slides_transportation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -44,8 +45,11 @@ class _Login extends ConsumerState<Login> {
         if (response.statusCode == 200) {
           final data = jsonDecode(response.body);
           final token = data['token'];
+          ref.read(userTokenProvider.notifier).setToken(token);
           ref.read(questionnaireProvider.notifier).setToken(token);
-          ref.read(resulttokenProvider.notifier).set(token);
+          ref.read(ActivationProvider.notifier).setToken(token);
+          // ref.read(resulttokenProvider.notifier).set(token);
+          // ref.read(tokenProvider.notifier).set(token);
           print(token);
           print('Login Succesful');
           Navigator.push(
@@ -243,32 +247,32 @@ class _Login extends ConsumerState<Login> {
                     ),
                   ),
                   SizedBox(height: 16.0),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Or log in with'),
-                      SizedBox(width: 8),
-                      ElevatedButton(onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                            // backgroundColor: Colors.tealAccent.withOpacity(0.3),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-
-                          },
-                          icon: Icon(
-                            Icons.g_mobiledata,
-                            size: 45,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text('Or log in with'),
+                  //     SizedBox(width: 8),
+                  //     ElevatedButton(onPressed: () {},
+                  //       style: ElevatedButton.styleFrom(
+                  //           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  //           // backgroundColor: Colors.tealAccent.withOpacity(0.3),
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //           )
+                  //       ),
+                  //       child: IconButton(
+                  //         onPressed: () {
+                  //
+                  //         },
+                  //         icon: Icon(
+                  //           Icons.g_mobiledata,
+                  //           size: 45,
+                  //           color: Colors.red,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -278,3 +282,4 @@ class _Login extends ConsumerState<Login> {
     );
   }
 }
+

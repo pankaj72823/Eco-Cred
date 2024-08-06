@@ -12,9 +12,7 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
+    return  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Card(
@@ -48,7 +46,6 @@ class Result extends StatelessWidget {
             title: Text(suggestion),
           )),
         ],
-      ),
-    );
+      );
   }
 }

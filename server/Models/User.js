@@ -74,7 +74,60 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     },
-    challangeId: { type: Schema.Types.ObjectId, ref: 'Challange'},
+    levels: {
+        easy: {
+          type: Number,
+          max: 3,
+          default: 0
+        },
+        medium: {
+          type: Number,
+          max: 3,
+          default: 0
+        },
+        hard: {
+          type: Number,
+          max: 3,
+          default: 0
+        }
+      },
+      rewards_completed: {
+        easy: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'Reward'
+          }
+        ],
+        medium: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'Reward'
+          }
+        ],
+        hard: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'Reward'
+          }
+        ]
+      },
+      rewards_upcoming: {
+        easy: 
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'Reward'
+          },
+        medium:
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'Reward'
+          },
+        hard: 
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'Reward'
+          }
+      },
     fav_product_Id :{ type: Schema.Types.ObjectId, ref: 'Product'},
     fav_project_Id :{ type: Schema.Types.ObjectId, ref: 'Project'},
 });

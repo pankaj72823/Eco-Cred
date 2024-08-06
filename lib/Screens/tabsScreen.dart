@@ -1,5 +1,7 @@
 import 'package:ecocred/Screens/challenges_screen.dart';
 import 'package:ecocred/Screens/home_screen.dart';
+import 'package:ecocred/Screens/profile.dart';
+import 'package:ecocred/Screens/reward.dart';
 import 'package:flutter/material.dart';
 
 class TabsScreen extends StatefulWidget{
@@ -18,6 +20,7 @@ class _TabsScreen extends State<TabsScreen>{
   final List<Widget> screen = [
     HomeScreen(),
     ChallengesScreen(),
+    RewardsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -25,13 +28,18 @@ class _TabsScreen extends State<TabsScreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.greenAccent.withOpacity(0.7),
         title: Text('Eco Cred',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: IconButton(onPressed: () {},
+        leading: IconButton(onPressed: () =>Navigator.push(
+          context, MaterialPageRoute(
+            builder: (ctx) => Profile(),
+        ),
+        ),
             icon: Icon(Icons.person),
         ),
         actions: [
@@ -51,6 +59,7 @@ class _TabsScreen extends State<TabsScreen>{
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        color: Colors.greenAccent.withOpacity(0.7),
         shape: CircularNotchedRectangle(),
         notchMargin: 7.0,
          child: Row(
@@ -62,28 +71,28 @@ class _TabsScreen extends State<TabsScreen>{
                  currentIndex = 1;
                });
              },
-                 icon: Icon(Icons.redeem),
+                 icon: ImageIcon(AssetImage('lib/assets/Icons/target.png'),),
              ),
              IconButton(onPressed: (){
                setState(() {
                  currentIndex = 2;
                });
              },
-               icon: Icon(Icons.flag),
-             ),
-             IconButton(onPressed: (){
-               setState(() {
-                 currentIndex = 2;
-               });
-             },
-               icon: Icon(Icons.business),
+               icon: ImageIcon(AssetImage('lib/assets/Icons/reward.png'),),
              ),
              IconButton(onPressed: (){
                setState(() {
                  currentIndex = 3;
                });
              },
-               icon: Icon(Icons.shopping_basket),
+               icon: ImageIcon(AssetImage('lib/assets/Icons/investment.png'),),
+             ),
+             IconButton(onPressed: (){
+               setState(() {
+                 currentIndex = 4;
+               });
+             },
+               icon: ImageIcon(AssetImage('lib/assets/Icons/shopping.png'),),
              ),
            ],
          ),
@@ -107,8 +116,20 @@ class _TabsScreen extends State<TabsScreen>{
       //       ),
       //     ]
       // ),
+
       ),
     );
   }
+  // BottomNavigationBarItem(
+  // icon: GestureDetector(
+  // onTap: () => Navigator.push(
+  // context,MaterialPageRoute(
+  // builder:(ctx) => MentorsScreen(mentors: mentorsList),
+  // ),
+  // ),
+  // child: Image.asset('lib/icons/clarification.png', color: Colors.white , height: 35, width: 35,)),
+  // label: 'Mentorship',
+  // backgroundColor: Colors.teal,
+  // ),
 
 }

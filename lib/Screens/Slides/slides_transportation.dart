@@ -33,9 +33,7 @@ class SlidesTransportation extends ConsumerWidget {
 
             body: Stack(
           children: [
-            AnimatedBanner(),
             const SizedBox(height: 10,),
-            AnimatedBanner(),
             questionsAsyncValue.when(
               loading: () => Center(child: LinearProgressIndicator(
                 backgroundColor: Colors.blue,

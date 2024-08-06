@@ -2,10 +2,12 @@ import dotenv from "dotenv";
 import express from 'express'
 import './config/passport.js'
 import './config/mongodb.js'
+import './config/cron.js'
 import { authRouter } from './Router/authRouter.js';
 import { answersRouter } from './Router/answersRouter.js';
 import { questionRouter } from './Router/questionRouter.js';
-
+import {activateRouter} from './Router/activateRouter.js'
+import {challengeRouter} from './Router/challengeRouter.js'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 dotenv.config();
 export const genAI = new GoogleGenerativeAI("AIzaSyC_-cPbqy6Y-HCvb5myQWhcUbSP2BnXmAI")
@@ -29,6 +31,8 @@ app.use('/auth' ,authRouter)
 
 app.use('/question' ,questionRouter)
 app.use('/answers',answersRouter)
+app.use('/challenges', challengeRouter)
+app.use('/activate', activateRouter)
 
 app.listen(5050, () => {
     console.log("Click to Connect : http://localhost:5050/");

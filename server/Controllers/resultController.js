@@ -14,20 +14,16 @@ const r1 = readline.createInterface({
 })
 
 
-function extractAllCurlyBracesSubstrings(inputString) {
-    const singleLineString = inputString.replace(/[\r\n]+/g, ' ').trim();
-    const regex = /\{.*?\}/;
-    const match = singleLineString.match(regex);
-    if (match) {
-        const jsonString = match[0];
-        try {
-        const jsonObject = JSON.parse(jsonString);
-        return jsonObject
-        } catch (error) {
-           return JSON.parse('{"message" :"error" }')
-        }
-    } else {
-        return JSON.parse('{"message" :"error" }')   
+function extractAllCurlyBracesSubstrings(inputString) { 
+    const startIndex = inputString.indexOf('{');
+    const endIndex = inputString.lastIndexOf('}') + 1;
+    const jsonString = inputString.substring(startIndex, endIndex);
+    
+    try {
+        const jsonData = JSON.parse(jsonString);
+        return jsonData
+    } catch (error) {
+        return JSON.parse('{"message" :"error" }');
     }
 }
 
@@ -47,8 +43,6 @@ async function run(data){
                 const result = await chat.sendMessage(message);
                 const response = await result.response
                 const text = response.text();
-                console.log(text)
-                console.log(extractAllCurlyBracesSubstrings(text))
                 return extractAllCurlyBracesSubstrings(text);
             }
 
@@ -78,7 +72,6 @@ export const result = wrapAsync(async(req,res)=>{
             return res.status(401).send('Invalid token');
         }
         else{
-            console.log(decoded)
             userId = decoded.sub
         }
     })
@@ -91,7 +84,6 @@ export const result = wrapAsync(async(req,res)=>{
             answer : answer.answer
         })
     }
-    console.log(detailAnswere)
     const result =await run(detailAnswere)
     let currentTimestamp = Date.now();
     let currentDate = new Date(currentTimestamp);
@@ -104,7 +96,6 @@ export const result = wrapAsync(async(req,res)=>{
         'carbon_footprint.suggestions': result.suggestions,
         'carbon_footprint.last_tracked': currentDate.toLocaleString()
       };
-    console.log(updatedCarbonFootprint)
     const updatedUser = await User.updateOne({ _id: userId }, { $set: updatedCarbonFootprint });
     res.status(200).send(result)
 })

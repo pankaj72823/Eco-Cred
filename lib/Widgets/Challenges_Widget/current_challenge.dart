@@ -33,7 +33,7 @@ class CurrentChallenge extends StatelessWidget{
             ),
             const SizedBox(height: 10,),
             Text(
-              'Reduce your Air conditioner usage by 30%',
+              'Reduce your personal vehicle usage by 30%',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,

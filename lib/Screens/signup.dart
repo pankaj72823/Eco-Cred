@@ -1,6 +1,8 @@
 
 import 'dart:convert';
 
+import 'package:ecocred/Provider/activation_provider.dart';
+import 'package:ecocred/Provider/token_provider.dart';
 import 'package:ecocred/Screens/Slides/slides_transportation.dart';
 import 'package:ecocred/Screens/tabsScreen.dart';
 import 'package:ecocred/Provider/answers_provider.dart';
@@ -70,8 +72,13 @@ class _Signup extends ConsumerState<Signup> {
       if(response.statusCode ==200){
         final data = jsonDecode(response.body);
         final token  = data['token'];
+        ref.read(userTokenProvider.notifier).setToken(token);
         ref.read(questionnaireProvider.notifier).setToken(token);
-        print("Successful");
+        ref.read(ActivationProvider.notifier).setToken(token);
+        // ref.read(resulttokenProvider.notifier).set(token);
+        // ref.read(tokenProvider.notifier).set(token);
+        print(token);
+        print(" Sign up Successful");
         Navigator.push(
             context, MaterialPageRoute(
             builder: (ctx)=> Signup(),
@@ -449,31 +456,31 @@ class _Signup extends ConsumerState<Signup> {
                     ),
                   ),
                   SizedBox(height: 16.0),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Or sign up with'),
-                      SizedBox(width: 8),
-                      ElevatedButton(onPressed: () {},
-                         style: ElevatedButton.styleFrom(
-                           // backgroundColor: Colors.tealAccent.withOpacity(0.3),
-                           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                           shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(10),
-                           )
-                         ),
-                          child: IconButton(
-                        onPressed: () {
-                        },
-                        icon: const Icon(
-                          Icons.g_mobiledata,
-                          size: 45,
-                          color: Colors.red,
-                        ),
-                      ),
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text('Or sign up with'),
+                  //     SizedBox(width: 8),
+                  //     ElevatedButton(onPressed: () {},
+                  //        style: ElevatedButton.styleFrom(
+                  //          // backgroundColor: Colors.tealAccent.withOpacity(0.3),
+                  //          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  //          shape: RoundedRectangleBorder(
+                  //            borderRadius: BorderRadius.circular(10),
+                  //          )
+                  //        ),
+                  //         child: IconButton(
+                  //       onPressed: () {
+                  //       },
+                  //       icon: const Icon(
+                  //         Icons.g_mobiledata,
+                  //         size: 45,
+                  //         color: Colors.red,
+                  //       ),
+                  //     ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
