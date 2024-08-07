@@ -20,6 +20,10 @@ const projectSchema = new Schema({
   impact :{
     type: String,
     required: true,
+  },
+  file: {
+    type: String,
+    required : true
   }
 })
 
