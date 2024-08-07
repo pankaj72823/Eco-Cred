@@ -181,14 +181,14 @@ const rewards =[
       "level": 2,
       "reward": "🌱 Tree Plantation in Your Honor",
       "description": "Contribute to a greener world! We will plant a tree in your honor and provide a certificate.",
-      "file": "tree_plantation_certificate.pdf"
+      "file": "https://drive.google.com/file/d/1DJIrX8nv49aeFwzskkmJJDqRFobdWy2D/view?usp=drive_link"
     },
     {
       "difficulty": "hard",
       "level": 3,
       "reward": "🏆 Leader Board Recognition",
       "description": "Achieve Leader Board Recognition! Be celebrated as a top contributor to environmental sustainability.",
-      "file": "leader_board_name_recognition.jpeg"
+      "file": "https://drive.google.com/file/d/1-VuTWUnuW4x3WAInFVvlKATfwjhTQVAR/view?usp=drive_link"
     }
   ]
   
