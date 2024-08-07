@@ -132,63 +132,63 @@ const rewards =[
       "level": 1,
       "reward": "🏅 Green Commute Champion Badge",
       "description": "Earn the prestigious Green Commute Champion Badge! Flaunt your dedication to a greener world.",
-      "file": "green_commute_badge.jpeg"
+      "file": "https://drive.google.com/file/d/1bmM0I9R83vUj_z67A_-umrIQ1_d-i8-g/view?usp=drive_link"
     },
     {
       "difficulty": "easy",
       "level": 2,
       "reward": "💸 5% Discount on Eco-Friendly Products",
       "description": "Enjoy a 5% discount on eco-friendly products. Save money while saving the planet!",
-      "file": "5_percent_discount_coupon.jpeg"
+      "file": "https://drive.google.com/file/d/1e2OtdXnycne7BjXNSE39bBXVhS_OF_oV/view?usp=drive_link"
     },
     {
       "difficulty": "easy",
       "level": 3,
       "reward": "🛍️ Premium Set of Reusable Eco-Friendly Bags",
       "description": "Receive a stylish premium set of reusable eco-friendly bags. Carry your groceries sustainably and in style.",
-      "file": "order_summary.jpeg"
+      "file": "https://drive.google.com/file/d/1HH1DtzoNhotSKmUi1hEueztUl0hRoRdJ/view?usp=drive_link"
     },
     {
       "difficulty": "medium",
       "level": 1,
       "reward": "🌍 Planet Friendly Warrior Badge",
       "description": "Become a Planet Friendly Warrior! Wear this badge with pride and inspire others.",
-      "file": "planet_friendly_warrior_badge.jpeg"
+      "file": "https://drive.google.com/file/d/1Ezu870cJjIO04hMjYXV0z4l6hgM61_wJ/view?usp=drive_link"
     },
     {
       "difficulty": "medium",
       "level": 2,
       "reward": "📜 Eco-Cred Excellence Certificate",
       "description": "Earn the exclusive Eco-Cred Excellence Certificate. Celebrate your outstanding contributions to sustainability.",
-      "file": "eco_cred_certificate.pdf"
+      "file": "https://drive.google.com/file/d/1oKYR81DaiFKNLnrp769V_z7kMo4YMyAM/view?usp=drive_link"
     },
     {
       "difficulty": "medium",
       "level": 3,
       "reward": "💚 Honorary Donation to Environmental NGO",
       "description": "Make a lasting impact! We will donate to an environmental NGO in your honor.",
-      "file": "donation_cerificate.jpeg"
+      "file": "https://drive.google.com/file/d/18QKnANjnAHbNvz-mdJq4I3mO6dLywMI3/view?usp=drive_link"
     },
     {
       "difficulty": "hard",
       "level": 1,
       "reward": "💰 25% Discount on All Eco Products",
       "description": "Get a 25% discount on all eco-friendly products! Shop more, save more, and lead a greener lifestyle.",
-      "file": "25_percent_discount_coupon.jpeg"
+      "file": "https://drive.google.com/file/d/1YknvRl0a3HFEfjZzrU99lI6hbwdAdK5B/view?usp=drive_link"
     },
     {
       "difficulty": "hard",
       "level": 2,
       "reward": "🌱 Tree Plantation in Your Honor",
       "description": "Contribute to a greener world! We will plant a tree in your honor and provide a certificate.",
-      "file": "tree_plantation_certificate.pdf"
+      "file": "https://drive.google.com/file/d/1DJIrX8nv49aeFwzskkmJJDqRFobdWy2D/view?usp=drive_link"
     },
     {
       "difficulty": "hard",
       "level": 3,
       "reward": "🏆 Leader Board Recognition",
       "description": "Achieve Leader Board Recognition! Be celebrated as a top contributor to environmental sustainability.",
-      "file": "leader_board_name_recognition.jpeg"
+      "file": "https://drive.google.com/file/d/1-VuTWUnuW4x3WAInFVvlKATfwjhTQVAR/view?usp=drive_link"
     }
   ]
   
@@ -198,117 +198,96 @@ const projects = [
       "description": "Terrapass offers projects for reducing carbon footprints via renewable energy and methane capture.",
       "organization": "Terrapass",
       "project_type": ["Reforestation", "Methane Capture"],
-      "impact": "Each 1,000 lbs of carbon offsets destroys 1,000 lbs of greenhouse gases."
+      "impact": "Each 1,000 lbs of carbon offsets destroys 1,000 lbs of greenhouse gases.",
+      "file": "https://drive.google.com/file/d/1Xb65lh_AA66Md839xNAPfN6JOHNByv2n/view?usp=drive_link" 
+
     },
     {
       "name": "Atmosfair",
       "description": "Atmosfair specializes in offsetting carbon emissions from air travel with impactful projects.",
       "organization": "Atmosfair",
       "project_type": ["BioGas", "Solar Energy", "Hydro Power"],
-      "impact": "Funds go to various projects offsetting emissions from air travel."
+      "impact": "Funds go to various projects offsetting emissions from air travel.",
+      "file":"https://drive.google.com/file/d/18V7sCeQtGt-LdE1pLPo7U-apQbrRIKHV/view?usp=drive_link"
     },
     {
       "name": "Myclimate",
       "description": "Myclimate aligns projects with UN SDGs, covering areas like hydropower and water purification.",
       "organization": "Myclimate",
       "project_type": ["Hydropower", "Energy Efficiency", "Land Improvement", "Water Purification"],
-      "impact": "Projects in Ethiopia, India, Togo, Benin, Solomon Islands, etc."
+      "impact": "Projects in Ethiopia, India, Togo, Benin, Solomon Islands, etc.",
+      "file" : "https://drive.google.com/file/d/1RCVCeGbo9RBDJSl35uQRQzRaCCY9x_hO/view?usp=drive_link"
     },
     {
       "name": "Carbon Checkout",
       "description": "Carbon Checkout integrates carbon offsetting into online shopping with a unique widget for project selection.",
       "organization": "Carbon Checkout",
       "project_type": ["Blended Impact", "Protect Nature", "Safeguard our Oceans", "Preserve Biodiversity", "Transition to Renewable Energy"],
-      "impact": "Focuses on investing in nature-based solutions and renewable energy."
+      "impact": "Focuses on investing in nature-based solutions and renewable energy.",
+      "file" : "https://drive.google.com/file/d/1X2k84nhkwAjxd-YXySpX86YDNO27574W/view?usp=drive_link"
     }
   ]
   
 
 const product = [
     {
-      "category": "Basic Needs / General Store Items",
-      "brand": "Puma",
-      "product": "Puma's Recycled Sneakers",
-      "description": "Sneakers made from recycled materials and sustainable practices.",
-      "carbon_reduce": 100
-    },
-    {
-      "category": "Basic Needs / General Store Items",
-      "brand": "Nirma",
-      "product": "Nirma Green Detergent",
-      "description": "A more eco-friendly detergent with reduced environmental impact.",
-      "carbon_reduce": 100
-    },
-    {
-      "category": "Basic Needs / General Store Items",
-      "brand": "Seventh Generation",
-      "product": "Seventh Generation Recycled Toilet Paper",
-      "description": "Toilet paper made from 100% recycled paper.",
-      "carbon_reduce": 50
-    },
-    {
-      "category": "Basic Needs / General Store Items",
-      "brand": "EcoVessel",
-      "product": "EcoVessel Insulated Water Bottle",
-      "description": "Reusable water bottles made from stainless steel and designed to reduce single-use plastic waste.",
-      "carbon_reduce": 30
+    "category": "General Store Items",
+     "brand": "Skoy",
+     "product": "Best Reusable Sponge Cloth",
+     "description": "Swedish dishcloths that are an eco-friendly alternative to paper towels and sponges, reusable for washing dishes or cleaning spills.",
+     "carbon_reduce": 100,
+     "file" : "https://drive.google.com/file/d/1GQ0yOvzUmpLpIHJVhdUpq-xyQ_qSGQh_/view?usp=drive_link"
     },
     {
       "category": "Cosmetics",
-      "brand": "Kiehl’s",
-      "product": "Kiehl’s Ultra Facial Cream (with eco-friendly packaging)",
-      "description": "Skincare products using eco-friendly packaging and sustainable ingredients.",
-      "carbon_reduce": 20
-    },
-    {
-      "category": "Cosmetics",
-      "brand": "Neutrogena",
-      "product": "Neutrogena Hydro Boost Water Gel (with sustainable packaging)",
-      "description": "Skincare products that use sustainable practices and packaging.",
-      "carbon_reduce": 20
-    },
-    {
-      "category": "Cosmetics",
-      "brand": "Burt’s Bees",
-      "product": "Burt’s Bees Lip Balm",
-      "description": "Lip balm made from natural ingredients and eco-friendly packaging.",
-      "carbon_reduce": 20
-    },
-    {
-      "category": "Cosmetics",
-      "brand": "Lush",
-      "product": "Lush Shampoo Bars",
-      "description": "Solid shampoo bars made from natural ingredients with minimal packaging.",
-      "carbon_reduce": 20
-    },
-    {
-      "category": "General Usage Item",
-      "brand": "Unilever",
-      "product": "Sustainable Home Care Products",
-      "description": "Cleaning products made from eco-friendly ingredients and packaging.",
-      "carbon_reduce": 30
-    },
-    {
-      "category": "General Usage Item",
-      "brand": "Ecover",
-      "product": "Ecover Dish Soap",
-      "description": "Biodegradable dish soap made from plant-based ingredients.",
-      "carbon_reduce": 20
-    },
-    {
-      "category": "General Usage Item",
-      "brand": "Method",
-      "product": "Method All-Purpose Cleaner",
-      "description": "Eco-friendly all-purpose cleaner made from non-toxic, biodegradable ingredients.",
-      "carbon_reduce": 30
-    },
-    {
-      "category": "General Usage Item",
-      "brand": "Ecos",
-      "product": "Plant-based Laundry Detergent",
-      "description": "Plant-based laundry detergent with a focus on sustainability.",
-      "carbon_reduce": 40
+      "brand": "Aveeno",
+      "product": "Aveeno Soothing Bath Treatment",
+      "description": "A bath treatment made of 100% pure colloidal oatmeal that relieves itchy skin and is sustainably sourced with an eco-friendly manufacturing process.",
+      "carbon_reduce": 50,
+     "file" : "https://drive.google.com/file/d/1d1Nr-n1Aqnmicm6WakIQ9e12Zy3axRwz/view?usp=drive_link"
     }
+    ,    
+    {
+      "category": "General Store Items",
+      "brand": "Baggu",
+      "product": "Baggu Standard Reusable Shopping Bags (3 Pack)",
+      "description": "Lightweight, compact reusable shopping bags in fun patterns and colors, perfect for avoiding single-use plastic bags.",
+      "price": "$42 at BAGGU",
+      "carbon_reduce": 60,
+     "file" : "https://drive.google.com/file/d/1wBHNwQzF1_OMqn5bF7ikkT4_Phi_Mi51/view?usp=drive_link"
+    },    
+    {
+      "category": "Home Care Items",
+      "brand": "Norm",
+      "product": "Sustainable Sneakers and T-Shirts",
+      "description": "Norm produces sneakers made from 90% recycled materials and organic and recycled cotton t-shirts, with a take-back program for recycling used sneakers.",
+      "carbon_reduce": 20,
+     "file" : "https://drive.google.com/file/d/1-zwCUgi_l7ohp8WZyh2c2gHXEPAdILeJ/view?usp=drive_link"
+    },    
+    {
+      "category": "Cosmetics",
+      "brand": "Tsuno",
+      "product": "Sustainable Tampons",
+      "description": "Tampons made from bleach-free organic cotton, with each box sold supporting girls' education in Sierra Leone and Uganda.",
+      "carbon_reduce": 40,
+     "file" : "https://drive.google.com/file/d/1B0-WD_sj8Qe_X2ZIQ4Th9murCEMhljVC/view?usp=drive_link"
+    },
+    {
+      "category": "Home Care Items",
+      "brand": "Flip & Tumble",
+      "product": "Eco-Friendly Product Bags",
+      "description": "Reusable eco-friendly bags that fit into the pockets of the brand’s collapsible tote bags, offering a sustainable alternative to plastic.",
+      "carbon_reduce": 10,
+     "file" : "https://drive.google.com/file/d/1SbUnnEMC6W4FbUVmZkPmqfvOnPPBNU2g/view?usp=drive_link"
+    }, 
+    {
+      "category": "Cosmetics",
+      "brand": "joy",
+      "product": "The Right to Shower Joy Shampoo",
+      "description": "Best Sustainable Shampoo/Soap Combo",
+      "carbon_reduce": 100,
+     "file" : "https://drive.google.com/file/d/1Y0RbG4IVfGAkPPEPc_SaUoKzlGBCGxIE/view?usp=drive_link"
+    }    
   ]
   
 export {dummydata,questions,rewards,projects,product}

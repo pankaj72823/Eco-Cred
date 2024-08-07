@@ -7,15 +7,15 @@ import './config/mongodb.js'
 import axios from 'axios';
 
 const startup =async()=>{
-    const url = 'http://localhost:5050/auth/signup';
-    try {
-        const response = await axios.post(url, dummydata);
-        console.log(response.data);
-    } catch (error) {
-        console.error('Error calling the route:', error);
-    }
-    await Question.insertMany(questions)
-    await Reward.insertMany(rewards)
+    // const url = 'http://localhost:5050/auth/signup';
+    // try {
+    //     const response = await axios.post(url, dummydata);
+    //     console.log(response.data);
+    // } catch (error) {
+    //     console.error('Error calling the route:', error);
+    // }
+    // await Question.insertMany(questions)
+    // await Reward.insertMany(rewards)
     await Product.insertMany(product)
     await Project.insertMany(projects)
     console.log("intialization Completed")
