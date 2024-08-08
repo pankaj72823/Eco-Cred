@@ -6,7 +6,7 @@ class CurrentChallenge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.redAccent.withOpacity(0.5),
+      color: Colors.redAccent.withOpacity(0.7),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -18,11 +18,11 @@ class CurrentChallenge extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Public Transportation week Challenge',
+              'Public Transportation Week Challenge',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black87,
+                fontSize: 22,
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 10),
@@ -31,7 +31,7 @@ class CurrentChallenge extends StatelessWidget {
               child: LinearProgressIndicator(
                 minHeight: 20,
                 value: 0.8,
-                backgroundColor: Colors.grey[300],
+                backgroundColor: Colors.white24,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.tealAccent),
               ),
             ),
@@ -40,8 +40,8 @@ class CurrentChallenge extends StatelessWidget {
               'Reduce your transportation by Car',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.black54,
+                fontSize: 18,
+                color: Colors.white70,
               ),
             ),
           ],

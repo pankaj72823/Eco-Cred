@@ -50,6 +50,7 @@
 
 
 import 'package:ecocred/Provider/rewards_provider.dart';
+import 'package:ecocred/Widgets/Rewards/upcoming_rewards.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ecocred/Widgets/Rewards/upcoming_card.dart';
@@ -64,16 +65,27 @@ class RewardsScreen extends ConsumerWidget {
     final rewardsAsyncValue = ref.watch(rewardsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Rewards')),
       body: rewardsAsyncValue.when(
         data: (data) {
-          final presentRewards = data['rewards_completed'] as Map<String, dynamic>;
-          final upcomingRewards = data['upcoming_reward'] as Map<String, dynamic>;
+          // Ensure data is not null and contains expected keys
+          final presentRewards = data?['rewards_completed'] ?? {};
+          final upcomingRewards = data?['upcoming_reward'] ?? {};
 
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Rewards',
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.teal,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
@@ -81,19 +93,21 @@ class RewardsScreen extends ConsumerWidget {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
+
                 SizedBox(
                   height: 200, // Adjust height as needed
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: upcomingRewards.length,
+                    itemCount: presentRewards['easy']?.length ?? 0,
                     itemBuilder: (context, index) {
-                      final reward = upcomingRewards.values.toList()[index];
+                      final reward = presentRewards['easy']?[index] ?? {};
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: UpcomingCard(
-                          level: reward['level'].toString(),
-                          reward: reward['reward'],
-                          difficulty: reward['difficulty'],
+                        child: RewardCard(
+                          level: reward['level']?.toString() ?? 'N/A',
+                          reward: reward['reward'] ?? 'N/A',
+                          difficulty: reward['difficulty'] ?? 'N/A',
+                          file: reward['file'] ?? 'N/A',
                         ),
                       );
                     },
@@ -110,16 +124,16 @@ class RewardsScreen extends ConsumerWidget {
                   height: 200, // Adjust height as needed
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: presentRewards['easy'].length,
+                    itemCount: presentRewards['easy']?.length ?? 0,
                     itemBuilder: (context, index) {
-                      final reward = presentRewards['easy'][index];
+                      final reward = presentRewards['easy']?[index] ?? {};
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: RewardCard(
-                          level: reward['level'].toString(),
-                          reward: reward['reward'],
-                          difficulty: reward['difficulty'],
-                          file: reward['file'],
+                          level: reward['level']?.toString() ?? 'N/A',
+                          reward: reward['reward'] ?? 'N/A',
+                          difficulty: reward['difficulty'] ?? 'N/A',
+                          file: reward['file'] ?? 'N/A',
                         ),
                       );
                     },
@@ -130,9 +144,8 @@ class RewardsScreen extends ConsumerWidget {
           );
         },
         loading: () => Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(child: Text('Error: $error')),
+        error: (error, stack) => Center(child: Text('Error: $error\nStack trace: $stack')),
       ),
     );
   }
 }
-

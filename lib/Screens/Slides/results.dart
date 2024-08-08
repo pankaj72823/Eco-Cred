@@ -22,6 +22,14 @@ class ResultsScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset('lib/assets/Home_screen/gemini.png', width: 25, height: 25,),
+                        Text('Generated with Gemini', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+
+                      ],
+                    ),
                     Result(result: result),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,7 +37,7 @@ class ResultsScreen extends ConsumerWidget {
                         ElevatedButton(
                           onPressed: () => {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.redAccent.withOpacity(0.8),
+                            backgroundColor: Colors.tealAccent.withOpacity(0.8),
                             padding: EdgeInsets.all(15),
                             side: BorderSide(color: Colors.black, width: 2),
                             shape: RoundedRectangleBorder(
@@ -50,7 +58,7 @@ class ResultsScreen extends ConsumerWidget {
                           ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.redAccent.withOpacity(0.8),
+                            backgroundColor: Colors.tealAccent.withOpacity(0.8),
                             padding: EdgeInsets.all(15),
                             side: BorderSide(color: Colors.black, width: 2),
                             shape: RoundedRectangleBorder(
@@ -74,23 +82,23 @@ class ResultsScreen extends ConsumerWidget {
         error: (error, stack) => Center(child: Text('Error: $error')),
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: 0,
-        selectedItemColor: Colors.orange,
-        onTap: (index) {
-
-        },
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.person),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      //   currentIndex: 0,
+      //   selectedItemColor: Colors.orange,
+      //   onTap: (index) {
+      //
+      //   },
+      // ),
     );
   }
 }

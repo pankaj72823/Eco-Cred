@@ -29,7 +29,7 @@ class PieChartWidget extends StatelessWidget {
         Colors.orange,
         Colors.red,
       ],
-      chartValuesOptions: ChartValuesOptions(
+      chartValuesOptions: const ChartValuesOptions(
         showChartValuesInPercentage: true,
 
       ),

@@ -93,6 +93,16 @@ class _ChallengesScreen extends State<ChallengesScreen> with TickerProviderState
                   ),
                 ),
               ),
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image.asset('lib/assets/Home_screen/gemini.png', width: 25, height: 25,),
+                  Text('Generated with Gemini', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+
+                ],
+              ),
               const SizedBox(height: 30),
               SlideTransition(
                 position: _widgetAnimation,

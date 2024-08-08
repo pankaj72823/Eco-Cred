@@ -71,6 +71,9 @@ flutter:
      - lib/assets/Welcome_Screen/welcome2.png
      - lib/assets/Home_screen/
      - lib/assets/Icons/
+     - lib/assets/Products/
+     - lib/assets/Project/
+     - lib/assets/Rewards/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -21,10 +21,6 @@ const productSchema = new Schema({
   carbon_reduce: {
     type: Number,
     required: true
-  },
-  file: {
-    type: String,
-    required : true
   }
 })
 

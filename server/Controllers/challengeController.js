@@ -103,6 +103,7 @@ async function run(data){
 
 export const challenge = wrapAsync(async(req,res)=>{
     const {token} = req.body
+    console.log(req.body);
     let userId;
     jwt.verify(token, jwtSecret, (err, decoded) => {
         if (err) {

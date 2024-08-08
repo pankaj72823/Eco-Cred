@@ -1,6 +1,9 @@
+
 import 'package:ecocred/Screens/challenges_screen.dart';
 import 'package:ecocred/Screens/home_screen.dart';
+import 'package:ecocred/Screens/product.dart';
 import 'package:ecocred/Screens/profile.dart';
+import 'package:ecocred/Screens/project.dart';
 import 'package:ecocred/Screens/reward.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +24,8 @@ class _TabsScreen extends State<TabsScreen>{
     HomeScreen(),
     ChallengesScreen(),
     RewardsScreen(),
+    ProjectScreen(),
+    Product(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,22 +34,25 @@ class _TabsScreen extends State<TabsScreen>{
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.greenAccent.withOpacity(0.7),
+
         title: Text('Eco Cred',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
+
+
         leading: IconButton(onPressed: () =>Navigator.push(
           context, MaterialPageRoute(
             builder: (ctx) => Profile(),
         ),
         ),
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, size: 35,),
         ),
         actions: [
           IconButton(onPressed: () {},
-              icon: Icon(Icons.notifications),
+              icon: Icon(Icons.notifications, size: 35,),
           ),
         ],
       ),
@@ -54,8 +62,8 @@ class _TabsScreen extends State<TabsScreen>{
           currentIndex = 0;
         });
       },
-        child: Icon(Icons.home),
-        backgroundColor: Colors.blue,
+        child: Icon(Icons.home, ),
+        backgroundColor: Colors.white,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(

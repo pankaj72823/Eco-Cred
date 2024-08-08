@@ -1,3 +1,4 @@
+import 'package:ecocred/Provider/rewards_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ecocred/Widgets/Rewards/upcoming_card.dart';
@@ -44,7 +45,7 @@ class UpcomingRewards extends ConsumerWidget {
                     child: UpcomingCard(
                       level: reward['level'].toString(),
                       reward: reward['reward'],
-                      difficulty: reward['difficulty'],
+                      difficulty: reward['difficulty'], file: '',
                     ),
                   );
                 }).toList(),

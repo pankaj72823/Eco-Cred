@@ -29,8 +29,8 @@ class SingleLevelRow extends StatelessWidget {
           ],
         ),
         SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
+          scrollDirection: Axis.vertical,
+          child: Column(
             children: challenges.map((challenge) => ChallengeCard(challenge: challenge)).toList(),
           ),
         ),

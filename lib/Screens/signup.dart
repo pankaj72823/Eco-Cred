@@ -53,7 +53,7 @@ class _Signup extends ConsumerState<Signup> {
       final profession = professionController.text;
 
       final response = await http.post(
-        Uri.parse("http://192.168.43.188:5050/auth/signup"),
+        Uri.parse("http://localhost:5050/auth/signup"),
         headers: {'Content-Type' : 'application/json'},
         body: jsonEncode({
           'name' : name,
@@ -84,6 +84,7 @@ class _Signup extends ConsumerState<Signup> {
             builder: (ctx)=> Signup(),
             ),
         );
+
       }
       else{
         print("There is error");
@@ -433,7 +434,7 @@ class _Signup extends ConsumerState<Signup> {
                         await _signup();
                         Navigator.push(
                             context, MaterialPageRoute(
-                            builder: (ctx)=> SlidesTransportation(),
+                            builder: (ctx)=> const SlidesTransportation(),
                         ),
                         );
                       },

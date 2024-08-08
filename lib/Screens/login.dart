@@ -34,7 +34,7 @@ class _Login extends ConsumerState<Login> {
       final password = passwordController.text;
 
       final response = await http.post(
-        Uri.parse("http://192.168.43.188:5050/auth/login"),
+        Uri.parse("http://localhost:5050/auth/login"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'username': username,

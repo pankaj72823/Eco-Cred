@@ -1,8 +1,8 @@
+import 'dart:convert';
+
 import 'package:ecocred/Provider/token_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 class User {
   final String name;
   final String email;
@@ -13,7 +13,9 @@ class User {
   final Map<String, double> carbonFootprint;
   final List<String> suggestions;
   final String lastTracked;
-  final List<Map<String, dynamic>> achievements;
+  final List<Map<String, dynamic>> achievementsEasy;
+  final List<Map<String, dynamic>> achievementsMedium;
+  final List<Map<String, dynamic>> achievementsHard;
 
   User({
     required this.name,
@@ -25,10 +27,11 @@ class User {
     required this.carbonFootprint,
     required this.suggestions,
     required this.lastTracked,
-    required this.achievements,
+    required this.achievementsEasy,
+    required this.achievementsMedium,
+    required this.achievementsHard,
   });
 
-  // Factory constructor to create a User instance from JSON
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       name: json['name'],
@@ -37,10 +40,18 @@ class User {
       levels: Map<String, int>.from(json['profile']['levels']),
       gender: json['profile']['gender'],
       profession: json['profile']['profession'],
-      carbonFootprint: Map<String, double>.from(json['carbon_footprint']..remove('suggestions')..remove('last_tracked')),
+      carbonFootprint: Map<String, double>.from({
+        'transportation': json['carbon_footprint']['transportation'],
+        'home_energy_use': json['carbon_footprint']['home_energy_use'],
+        'diet': json['carbon_footprint']['diet'],
+        'waste_management': json['carbon_footprint']['waste_management'],
+        'total': json['carbon_footprint']['total'],
+      }),
       suggestions: List<String>.from(json['carbon_footprint']['suggestions']),
       lastTracked: json['carbon_footprint']['last_tracked'],
-      achievements: List<Map<String, dynamic>>.from(json['achievement']['easy']),
+      achievementsEasy: List<Map<String, dynamic>>.from(json['achievement']['easy']),
+      achievementsMedium: List<Map<String, dynamic>>.from(json['achievement']['medium']),
+      achievementsHard: List<Map<String, dynamic>>.from(json['achievement']['hard']),
     );
   }
 }
@@ -49,16 +60,16 @@ class User {
 final userProvider = FutureProvider<User>((ref) async {
   final token = ref.watch(userTokenProvider);
   final response = await http.post(
-      Uri.parse('https://192.168.43.188:5050/profile'),
-      headers: {'Content-Type': 'application/json'},
-     body: json.encode({
-      'token': token
-    }
-    ),
+    Uri.parse('http://localhost:5050/profile'),
+    headers: {'Content-Type': 'application/json'},
+    body: json.encode({'token': token}),
   );
+
   if (response.statusCode == 200) {
-    final json = jsonDecode(response.body);
-    return User.fromJson(json);
+    final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
+    // Logging the JSON response for debugging
+    print(jsonData);
+    return User.fromJson(jsonData);
   } else {
     throw Exception('Failed to load user data');
   }

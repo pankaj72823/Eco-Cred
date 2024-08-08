@@ -163,22 +163,22 @@ class _HomeScreen extends ConsumerState<HomeScreen> with TickerProviderStateMixi
               const SizedBox(height: 20),
               SlideTransition(
                 position: _currentChallengeAnimation,
-                child: Card(
+                child:  Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 6,
-                  color: Colors.redAccent.withOpacity(0.5),  // Background color of the card
+                  color: Colors.redAccent.withOpacity(0.7),  // Background color of the card
                   child: const Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(12.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Your Current Carbon Footprint is 20Kg',
+                          'Your Current Carbon Footprint is 7.5Kg',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,  // Text color
+                            color: Colors.white,  // Text color
                             fontSize: 20,
                           ),
                         ),

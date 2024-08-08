@@ -6,7 +6,7 @@ import 'dart:convert';
 final rewardsProvider = FutureProvider<Map<String, dynamic>>((ref) async {
   final token = ref.watch(userTokenProvider);
   final response = await http.post(
-    Uri.parse('http://192.168.43.188:5050/reward'),
+    Uri.parse('http://localhost:5050/reward'),
     headers: {'Content-Type' : 'application/json'},
     body: jsonEncode({
       'token' : token,

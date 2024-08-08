@@ -25,7 +25,7 @@ class _QuestionsCard extends ConsumerState<QuestionsCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -57,17 +57,17 @@ class _QuestionsCard extends ConsumerState<QuestionsCard> {
                       children: widget.question['options'].map<Widget>((option) {
                         return ListTile(
                           title: Text(option),
-                          leading: Radio<String>(
-                            value: option,
-                            groupValue: selectedOption,
+                          leading: Checkbox(
+                            value: selectedOption == option,
                             onChanged: (value) {
                               setState(() {
-                                selectedOption = value;
+                                selectedOption = option;
                               });
                               ref.read(questionnaireProvider.notifier).addAnswer(
-                                widget.question['question'], value!,
+                                widget.question['question'], option,
                               );
                             },
+                            activeColor: Colors.teal,
                           ),
                         );
                       }).toList(),
@@ -102,6 +102,7 @@ class _QuestionsCard extends ConsumerState<QuestionsCard> {
     );
   }
 }
+
 
 
 // class QuestionsCard extends StatefulWidget{

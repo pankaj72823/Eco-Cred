@@ -16,14 +16,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
   final carbonFootprintProvider = FutureProvider<CarbonFootprintResult>((ref) async {
     final token = ref.watch(userTokenProvider);
-    // final token = ref.watch(resulttokenProvider);
 
     if(token== null){
       throw Exception('Token is not available');
     }
 
     final response = await http.post(
-        Uri.parse('http://192.168.43.188:5050/answers/result'),
+        Uri.parse('http://localhost:5050/answers/result'),
         headers: {'Content-Type' : 'application/json'},
         body: jsonEncode({
         'token' : token,

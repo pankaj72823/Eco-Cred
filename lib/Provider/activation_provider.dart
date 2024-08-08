@@ -16,7 +16,7 @@ class ActivationNotifier extends StateNotifier<Map<String, bool>> {
   Future<void> activateChallenge(String challengeId) async {
 
     final response = await http.post(
-      Uri.parse('http://192.168.43.188:5050/activate'),
+      Uri.parse('http://localhost:5050/activate'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'token': _token,
@@ -27,7 +27,7 @@ class ActivationNotifier extends StateNotifier<Map<String, bool>> {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      state = {...state, challengeId: data['activate']};
+      state = {...state, challengeId: data['activate']?? false};
     } else {
       throw Exception('Failed to activate challenge');
     }
